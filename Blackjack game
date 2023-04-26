@@ -1,0 +1,57 @@
+import random
+
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+cardsDealerOne = random.randint(2, 11)
+cardsDealerTwo = random.randint(2, 11)
+cardsDealer = []
+cardsDealer.append(cardsDealerTwo + cardsDealerOne)
+totalSumDealer = sum(cardsDealer)
+print(f"First dealer card is {cardsDealerOne}")
+
+cardsGuest = random.sample(cards, 2)
+totalSumGuest = sum(cardsGuest)
+print(f"You have a {cardsGuest}, total sum is {totalSumGuest}")
+
+
+nextCards = True
+
+while nextCards:
+    oneMoreTime = input("Do you want one more card? y for Yes: ")
+    if oneMoreTime == "y":
+        thirdCardUser = random.randint(2, 11)
+        cardsGuest.append(thirdCardUser)
+        totalSumGuest += thirdCardUser
+        print(f"You have a {cardsGuest}, total sum is {totalSumGuest}")
+        if totalSumGuest > 21:
+            print("House won")
+            break
+    else:
+        nextCards = False
+        print(f"Dealer has a {cardsDealer}")
+        while totalSumGuest <= 21 and totalSumGuest >= totalSumDealer:
+            thirdCardDealer = random.randint(2, 11)
+            cardsDealer.append(thirdCardDealer)
+            print(f"Dealer call one more card. It is {thirdCardDealer}")
+            totalSumDealer += thirdCardDealer
+            print(f"Total sum of dealers cards is {totalSumDealer}")
+            if totalSumGuest == 21 and totalSumDealer == 21:
+                print("Deuce")
+            elif totalSumDealer > 21:
+                print("You won")
+            elif totalSumDealer <= 21 and totalSumDealer > totalSumGuest:
+                print(f"Hpuse won with score of {totalSumDealer}")
+            elif totalSumDealer <= 21 and totalSumDealer < totalSumGuest:
+                print("You won")
+
+
+
+
+
+
+
+
+
+
+
+

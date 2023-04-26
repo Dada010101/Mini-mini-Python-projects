@@ -1,0 +1,96 @@
+import random
+
+
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
+word_list = ['abruptly', 'absurd', 'abyss', 'affix', 'askew', 'beekeeper', 'bikini', 'blitz', 'blizzard',
+'boggle', 'bookworm', 'boxcar', 'boxful', 'buckaroo', 'buffalo', 'crypt', 'curacao', 'cycle', 'daiquiri', 
+'dirndl', 'disavow', 'dizzying', 'flapjack', 'flopping', 'fluffiness', 'flyby', 'gnarly', 'haphazard', 
+'hyphen', 'iatrogenic', 'icebox', 'injury', 'ivory', 'subway', 'swivel', 'syndrome', 'thriftless',
+]
+
+chosen_word = random.choice(word_list)
+display = ["_"] * len(chosen_word)
+
+lives = 6
+
+while "_" in display:
+    userInput = input("Guess a leter: ").lower()
+
+
+    for i in range(len(display)):
+        if chosen_word[i] == userInput:
+            display[i] = userInput
+            print(display)
+    if userInput in display:
+        print("You already guess this letter")
+
+    else:
+        lives -= 1
+        print(stages[lives])
+        print(f"The letter {userInput} is not in word")
+        if lives == 0:
+            print("over")
+            break
+print(f"{' '.join(display)}")
+
+
+
+
+
+

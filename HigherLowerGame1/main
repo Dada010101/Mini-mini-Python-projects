@@ -1,1 +1,57 @@
-Higher\LowerGame
+import random
+from data import data
+
+def choice():
+
+    score = 0
+    correctAns = None
+
+    while True:
+        print(correctAns)
+        randomChoices = random.sample(data, k=2)
+        if correctAns is None:
+            randomChoice1 = randomChoices[0]
+            randomChoice2 = randomChoices[1]
+        else:
+            randomChoice1 = correctAns
+            randomChoice2 = randomChoices[1]
+        #values from 1st random choice
+        questionAname = list(randomChoice1.values())[0]
+        questionAdescription = list(randomChoice1.values())[2]
+        questionACounytr = list(randomChoice1.values())[3]
+        #values from second random choice
+        questionBname = list(randomChoice2.values())[0]
+        questionBdescription = list(randomChoice2.values())[2]
+        questionBCounytr = list(randomChoice2.values())[3]
+        #checkpoint to get values for points
+        answerA = list(randomChoice1.values())[1]
+        answerB = list(randomChoice2.values())[1]
+
+        answer = input(
+            f"Who has more fans: press A for {questionAname}, {questionAdescription} from {questionACounytr} "
+            f"or B for {questionBname}, {questionBdescription} from {questionBCounytr}?").lower()
+
+        if answer == "a":
+            if answerA > answerB:
+                score += 1
+                print(f"That is correct. You won {score} point.")
+                correctAns = randomChoice1
+            else:
+                print("Incorrect. You lose. Game over")
+                break
+
+        elif answer == "b":
+            if answerB > answerA:
+                score += 1
+                print(f"That is correct. You won {score} point.")
+                correctAns = randomChoice2
+            else:
+                print("Incorrect. You lose. Game over")
+                break
+        else:
+            print("Wrong answer")
+
+    print(f"Your final score is {score}")
+    return correctAns
+
+choice()
